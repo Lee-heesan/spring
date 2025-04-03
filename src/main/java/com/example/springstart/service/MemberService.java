@@ -5,13 +5,20 @@ import com.example.springstart.domain.Member;
 import com.example.springstart.repository.MemberRepository;
 import com.example.springstart.repository.MemoryMemberRepository;
 
+import java.util.List;
 import java.util.Optional;
 
+
+//Ctrl + shift + T : 자동으로 테스트 생성
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
 
-    
+    public MemberService(MemoryMemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+
     // 회원가입
     public Long join(Member member) {
         //같은 이름이 있는 중복 회원 x
@@ -21,8 +28,12 @@ public class MemberService {
 //            throw new IllegalStateException("이미 존재하는 회원입니다.");
 //        }); //ifPresent : 객체를 가지고 있으면 true, 아니면 false
 //
+        validateMember(member); //중복회원 검증
+        memberRepository.save(member);
+        return member.getId();
+    }
 
-
+    private void validateMember(Member member) {
         // 위 와 다르게 바로 넣어 줄 수 있다.
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
@@ -30,8 +41,17 @@ public class MemberService {
                 });
 
         memberRepository.save(member);
-        return member.getId();
     }
 
+
+    //전체 회원 조회
+    public List<Member> findMembers(){
+        return memberRepository.findAll();
+    }
+
+
+    public Optional<Member> findOne(Long id){
+        return memberRepository.findById(id);
+    }
 
 }
