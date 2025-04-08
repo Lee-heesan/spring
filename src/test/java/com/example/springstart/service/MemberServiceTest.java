@@ -5,7 +5,6 @@ import com.example.springstart.repository.MemberRepository;
 import com.example.springstart.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +43,7 @@ class MemberServiceTest {
 
         //then
         Member findMember = memberService.findOne(saveId).get();
-        Assertions.assertThat(member.getName()).isEqualTo(findMember.getName()) ;
+            Assertions.assertThat(member.getName()).isEqualTo(findMember.getName()) ;
     }
 
     @Test

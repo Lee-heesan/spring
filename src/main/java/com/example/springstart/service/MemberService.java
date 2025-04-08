@@ -4,17 +4,18 @@ package com.example.springstart.service;
 import com.example.springstart.domain.Member;
 import com.example.springstart.repository.MemberRepository;
 import com.example.springstart.repository.MemoryMemberRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 
-//Ctrl + shift + T : 자동으로 테스트 생성
+@Service//Ctrl + shift + T : 자동으로 테스트 생성
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public MemberService(MemoryMemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
@@ -39,8 +40,6 @@ public class MemberService {
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
-
-        memberRepository.save(member);
     }
 
 
