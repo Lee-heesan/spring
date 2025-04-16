@@ -5,12 +5,14 @@ import com.example.springstart.domain.Member;
 import com.example.springstart.repository.MemberRepository;
 import com.example.springstart.repository.MemoryMemberRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 
-@Service//Ctrl + shift + T : 자동으로 테스트 생성
+//@Service//Ctrl + shift + T : 자동으로 테스트 생성
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
