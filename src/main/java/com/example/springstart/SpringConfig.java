@@ -1,9 +1,11 @@
 package com.example.springstart;
 
+import com.example.springstart.aop.TimetraceAop;
 import com.example.springstart.repository.*;
 import com.example.springstart.service.MemberService;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,7 +31,7 @@ public class SpringConfig {
     private final MemberRepository memberRepository;
 
 
-    public SpringConfig(MemberRepository memberRepository){
+    public SpringConfig(@Qualifier("springDataJpaMemberRepository")MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
 
@@ -39,6 +41,12 @@ public class SpringConfig {
 //        return new MemberService(memberRepository());
         return  new MemberService(memberRepository);
     }
+
+// 여기서 Bean해주고 써도 되고 TimeTraceAop에 @Component 해줘도 된다.
+//    @Bean
+//    public TimetraceAop timetraceAop(){
+//         return new TimetraceAop();
+//    }
 
 
 //    @Bean

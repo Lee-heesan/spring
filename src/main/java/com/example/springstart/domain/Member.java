@@ -5,9 +5,10 @@ import jakarta.persistence.*;
 
 @Entity
 public class Member {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가
     private Long id;
-    @Column(name="username")
+
     private String name;
 
     public Long getId() {

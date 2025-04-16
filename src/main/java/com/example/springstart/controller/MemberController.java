@@ -18,6 +18,7 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService){
         this.memberService = memberService;
+        System.out.println("memberService = " + memberService.getClass()); // AOP는 Proxy 기술을 사용함. 그걸 확인하기 위해 출력
     }
 
     //2. 필드 주입
