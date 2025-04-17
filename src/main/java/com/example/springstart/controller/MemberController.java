@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class MemberController {
+public class    MemberController {
      //생성자를 통해 들어온 것. (권장함)
     private final MemberService memberService;
 
@@ -55,7 +55,6 @@ public class MemberController {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members",members);
         return "members/memberList";
-
     }
 
 

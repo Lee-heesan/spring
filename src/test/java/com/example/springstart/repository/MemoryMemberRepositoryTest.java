@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.Commit;
 
 import java.util.List;
-import java.util.Optional;
+
 
 class MemoryMemberRepositoryTest {
 
@@ -20,12 +20,15 @@ class MemoryMemberRepositoryTest {
 
     @Test
     public void save(){
-        com.example.springstart.domain.Member member = new Member();
+        //given
+        Member member = new Member();
         member.setName("spring");
 
+        //when
         repository.save(member);
 
-        Member result = repository.findById(member.getId()).get();
+        //then
+        Member result = repository.findById(member.getId()).get();   //Optional은 값이 없는 경우를 표현하기 위한 클래스
         // Assertions.assertEquals(member, result);
         Assertions.assertThat(repository.findById(member.getId())).isPresent();
     }
