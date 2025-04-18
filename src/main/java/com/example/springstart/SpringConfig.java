@@ -30,7 +30,7 @@ public class SpringConfig {
 
     private final MemberRepository memberRepository;
 
-
+    //Qualifier 넣은 이유: WebClinet를 Bean으로 등록했는데 요청해야 할 url이 많아서 여러개의 WebClient를 등록하면서 문제가 발생
     public SpringConfig(@Qualifier("springDataJpaMemberRepository")MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
